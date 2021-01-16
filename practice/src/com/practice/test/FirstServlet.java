@@ -5,10 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class FirstServlet extends HttpServlet {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 
 	@Override
 	public void init(ServletConfig config) throws ServletException{
