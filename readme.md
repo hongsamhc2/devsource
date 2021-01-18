@@ -1,2 +1,1 @@
-hellobyebye
-sdwdsasdascgit 
+This repository is just storage formy project's utilities
