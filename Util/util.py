@@ -19,8 +19,16 @@ class progress:
         start = time.time()
         result = func(data)
         end = time.time() - start
-        print(f'{func.__name__} execution time {end}ms')
+        print(f'{func.__name__} execution time {self.calTime(end)}')
         return result
+
+    def calTime(self,T):
+        T = int(T)
+        M = T//60
+        S = T%60
+        H = M//60
+        M = M%60
+        return f'{str(H).zfill(2)}:{str(M).zfill(2)}:{str(S).zfill(2)}'
 
     def listMapPool(self, func, data, process_num=4):
         start = time.time()
