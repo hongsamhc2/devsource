@@ -48,44 +48,50 @@ class progress:
 
 
 class Converter:
+
+    def getFileList(self,dir_path,extension=None,attach=False):
+        file_list = os.listdir(dir_path)
+        file_list = [self.checkextension(x,extension) for x in file_list if self.checkextension(x,extension) is not None]
+        if attach:
+            file_list = [dir_path + file for file in file_list]
+        return file_list
+
     def readFile(self,path):
         df = None
-        extention = os.path.splitext(path)[-1]
-        if extention=='.xlsx':
+        extension = os.path.splitext(path)[-1]
+        if extension=='.xlsx':
             df = pd.read_excel(path)
-        if extention=='.csv':
+        if extension=='.csv':
             df = pd.read_csv(path,low_memory=False)
         if 'Unnamed: 0' in df.columns:
             df.drop(['Unnamed: 0'],axis=1,inplace=True)
         return df
 
     def saveFile(self,df,path):
-        extention = os.path.splitext(path)[-1]
-        if extention == '.xlsx':
+        extension = os.path.splitext(path)[-1]
+        if extension == '.xlsx':
             df.to_excel(path,index=False)
-        if extention == '.csv':
+        if extension == '.csv':
             df.to_csv(path, index=False)
-
         return df
 
-    def checkExtention(self,filename,extention):
+    def checkextension(self,filename,extension):
         data = os.path.splitext(filename)[-1]
-        if data == extention:
+        if data == extension:
             return filename
 
 
-    def convertExtention(self,filename,extention):
+    def convertextension(self,filename,extension):
         file_name_list = os.path.splitext(filename)[:-1]
         filename = ''.join(file_name_list)
-        filename = filename + extention
+        filename = filename + extension
         return filename
 
-    def fileExtention(self,dir_path,first='xlsx',second='csv'):
-        file_list = os.listdir(dir_path)
-        first_extention = '.'+first
-        second_extention= '.' + second
-        file_list = [self.checkExtention(x,first_extention) for x in file_list if self.checkExtention(x,first_extention) is not None]
-        cv_file_list = list(map(lambda x: self.convertExtention(x,second_extention),file_list))
+    def fileExtension(self,dir_path,first='xlsx',second='csv'):
+        first_extension = '.'+first
+        second_extension= '.' + second
+        file_list = self.getFileList(dir_path,first_extension)
+        cv_file_list = list(map(lambda x: self.convertextension(x,second_extension),file_list))
         set_file_list = zip(file_list,cv_file_list)
         for f,c in set_file_list:
             path = dir_path + f
