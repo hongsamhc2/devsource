@@ -1,11 +1,22 @@
-var textLoad = (function(){
-    var po = ()=>{
+var textLoad = (function () {
+    const wordmaker = $('#wordmaker');
+    if (!wordmaker) return false;
+    var tagScript = '';
+
+    const po = () => {
         console.log('asdasds');
     };
 
-    return{
-        po :po
+    const testpop = () => {
+        tagScript = '<div class="textpop"></div>';
+        wordmaker.append(tagScript);
+    };
+
+    
+
+    testpop();
+
+    return {
+        po: po
     }
 })();
-
-textLoad.po();
