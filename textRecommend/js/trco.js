@@ -17,7 +17,8 @@ var textLoad = (function () {
             'position':'absolute',
             'top':taw,
             'left':tal,
-            'background-color':'white'
+            'background-color':'white',
+            'border':'1px solid black'
         });
     };
 
