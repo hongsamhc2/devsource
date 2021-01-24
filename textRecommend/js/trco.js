@@ -1,12 +1,12 @@
 var textLoad = (function () {
-    const wordmaker = $('#trco') | {};
-    if (!wordmaker) return false;
+    const wordmaker = $('#trco');
     var tagScript = '';
+    if(!wordmaker.length) return false;
+    console.log(wordmaker);
     var taw = wordmaker.offset().top;
     var tal = wordmaker.offset().left;
     var fs = wordmaker.css('font-size');
     var cmp = wordmaker.prop('selectionStart');
-    console.log(wordmaker);
     
     const po = () => {
         console.log('asdasds');
