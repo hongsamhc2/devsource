@@ -1,52 +1,14 @@
-var textLoad = (function () {
-    const wordmaker = $('#trco');
-    var tagScript = '';
-    if(!wordmaker.length) return false;
-    console.log(wordmaker);
-    var taw = wordmaker.offset().top;
-    var tal = wordmaker.offset().left;
-    var fs = wordmaker.css('font-size');
-    var cmp = wordmaker.prop('selectionStart');
-    
-    const po = () => {
-        console.log('asdasds');
+$(document).ready(function () {
+    var oo = {
+        '명성': '1',
+        '명강': '2'
     };
-
-    const testpop = () => {
-        tagScript = '<div class="textpop"></div>';
-        wordmaker.after(tagScript);
-        $('.textpop').css({
-            'position': 'absolute',
-            'top': taw,
-            'left': tal,
-            'background-color': 'white',
-            'border': '1px solid black'
-        });
-    };
-
-    const wordlist = () => {
-        tagScript = '<div class="wordlist"><span>asdasdasdasd</span></div>';
-        $('.textpop').append(tagScript);
-    };
-
-    const checkWord = (text)=>{
-        var ko = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
-        var en = /[a-z|A-Z|\s]/g;
-        ko = text.match(ko);
-        en = text.match(en);
-        var kol = ko.length;
-        var enl = en.length;
-
-        if(ko){
-            console.log(kol);
-            console.log(enl);
-        }
-    };
-
-    testpop();
-    wordlist();
-    checkWord('가가 가가가가가\nasdasd ');
-    return {
-        po: po
-    }
-})();
+    console.log(00);
+    var key = Object.keys(oo);
+    console.log(key);
+    let result = key.map((t) => {
+        if (t.indexOf('강')!==-1) console.log(oo[t]);
+        return t.indexOf('명');
+        
+    });
+})
