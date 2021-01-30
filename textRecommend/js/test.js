@@ -1,4 +1,4 @@
 $(document).ready(function(){
-    $('#wordmaker').mkmk();
+    $('.wordmaker').mkmk();
 })
 

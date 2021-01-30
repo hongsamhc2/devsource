@@ -1,21 +1,49 @@
-import * from "./keyControll";
 
 (function ($) {
-    $.fn.mkmk = () => {
-        console.log($.fn.tagName);
-        keyEvent();
-        console.log('sd');
+    var config ={
+        name :"wordmaker"
     };
+    let selector;
+
+    $.fn.mkmk = function(){
+        selector = validSelector($(this));
+        if(!selector) return false;
+        console.log(selector);        
+      };
+
+
+    const validSelector =(sel)=>{
+        let className = sel.attr('class');
+        let idName = sel.attr('id');
+        if(className === undefined || className === null){
+            if(idName === undefined || idName === null){
+                return selector = '';
+            }else{
+                if(config.name.indexOf(idName)!==-1){
+                    return selector = '#' + idName;
+                }else{
+                    return selector='';
+                }
+            }
+        }else{
+            className = className.split(' ');
+            if(config.name.indexOf(className)!==-1){
+                return selector = '.' + className;
+            }else{
+                return selector='';
+            }
+        }
+    };
+
 }(jQuery));
 
 
 // keyevent
 
-function keyEvent() {
+function keyEvent(sel) {
     var kc;
     $(document).on('keydown', '#wordmaker', (e) => {
         kc = e.keyCode;
-        console.log(kc);
         upKey(kc);
     });
     $(document).on('keyup', '#wordmaker', (e) => {
