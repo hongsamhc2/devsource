@@ -1,36 +1,43 @@
-
 (function ($) {
-    var config ={
-        name :"wordmaker"
+    var config = {
+        name: "wordmaker",
+        status:''
     };
     let selector;
 
-    $.fn.mkmk = function(){
+    $.fn.mkmk = function (turn = 'on') {
+        if (!startApp(turn)) return false;
         selector = validSelector($(this));
-        if(!selector) return false;
-        console.log(selector);        
-      };
+        if (!selector) return false;
+        console.log(selector);
+    };
 
-
-    const validSelector =(sel)=>{
+    const startApp = (turn) => {
+        config.status = turn;
+        if (turn !== 'on') {
+            return false;
+        }
+        return true;
+    };
+    const validSelector = (sel) => {
         let className = sel.attr('class');
         let idName = sel.attr('id');
-        if(className === undefined || className === null){
-            if(idName === undefined || idName === null){
+        if (className === undefined || className === null) {
+            if (idName === undefined || idName === null) {
                 return selector = '';
-            }else{
-                if(config.name.indexOf(idName)!==-1){
+            } else {
+                if (config.name.indexOf(idName) !== -1) {
                     return selector = '#' + idName;
-                }else{
-                    return selector='';
+                } else {
+                    return selector = '';
                 }
             }
-        }else{
+        } else {
             className = className.split(' ');
-            if(config.name.indexOf(className)!==-1){
+            if (config.name.indexOf(className) !== -1) {
                 return selector = '.' + className;
-            }else{
-                return selector='';
+            } else {
+                return selector = '';
             }
         }
     };
@@ -62,6 +69,7 @@ function upKey(kc) {
         console.log('asd');
     };
 }
+
 function downKey(kc) {
     var sel = false;
     if (!sel) return;
@@ -69,6 +77,7 @@ function downKey(kc) {
         console.log('asd');
     };
 }
+
 function leftKey(kc) {
     var sel = false;
     if (!sel) return;
@@ -76,6 +85,7 @@ function leftKey(kc) {
         console.log('asd');
     };
 }
+
 function rightKey(kc) {
     var sel = false;
     if (!sel) return;
@@ -83,6 +93,7 @@ function rightKey(kc) {
         console.log('asd');
     };
 }
+
 function enterKey(kc) {
     var sel = false;
     if (!sel) return;
@@ -90,6 +101,7 @@ function enterKey(kc) {
         console.log('asd');
     };
 }
+
 function backSpaceKey(kc) {
     var sel = false;
     if (!sel) return;
